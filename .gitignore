@@ -19,3 +19,6 @@ venv
 .venv
 .env
 .python-version
+
+lib/api/src/grpc/grpc.health.v1.rs
+lib/api/src/grpc/qdrant.rs
