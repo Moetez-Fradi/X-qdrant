@@ -30,6 +30,32 @@ impl PartialOrd for ScoredPointOffset {
     }
 }
 
+/// the contribution of a single dimension to the similarity score
+#[derive(Clone, Debug, PartialEq)]
+pub struct DimensionContribution {
+    pub dimension: usize,
+    pub contribution: ScoreType,
+}
+
+/// Explanation of how a similarity score was computed
+#[derive(Clone, Debug, Default)]
+pub struct ScoreExplanation {
+    pub top_dimensions: Vec<DimensionContribution>,
+}
+
+impl ScoreExplanation {
+    pub fn new(mut contributions: Vec<DimensionContribution>, top_n: usize) -> Self {
+        contributions.sort_by(|a, b| {
+            OrderedFloat(b.contribution.abs())
+                .cmp(&OrderedFloat(a.contribution.abs()))
+        });
+        contributions.truncate(top_n);
+        Self {
+            top_dimensions: contributions,
+        }
+    }
+}
+
 #[derive(Copy, Clone, Debug)]
 pub struct TelemetryDetail {
     pub level: DetailsLevel,
