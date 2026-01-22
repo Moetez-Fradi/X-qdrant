@@ -1186,6 +1186,10 @@ pub struct SearchRequestInternal {
     /// Score of the returned result might be higher or smaller than the threshold depending on the
     /// Distance function used. E.g. for cosine similarity only higher scores will be returned.
     pub score_threshold: Option<ScoreType>,
+    /// If true, return an explanation of which dimensions contributed most to each result's score.
+    /// Default is false.
+    #[serde(default)]
+    pub with_explanation: Option<bool>,
 }
 
 #[derive(Validate, Serialize, Deserialize, JsonSchema, Debug, Clone, PartialEq)]

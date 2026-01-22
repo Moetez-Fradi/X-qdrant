@@ -28,6 +28,8 @@ pub struct CoreSearchRequest {
     /// Options for specifying which vectors to include into response. Default is false.
     pub with_vector: Option<WithVector>,
     pub score_threshold: Option<ScoreType>,
+    /// If true, return an explanation of which dimensions contributed most to each result's score.
+    pub with_explanation: bool,
 }
 
 impl CoreSearchRequest {
@@ -53,6 +55,7 @@ impl From<SearchRequestInternal> for CoreSearchRequest {
             params,
             with_vector,
             with_payload,
+            with_explanation,
         } = request;
         Self {
             query: QueryEnum::Nearest(NamedQuery::from(NamedVectorStruct::from(vector))),
@@ -63,6 +66,7 @@ impl From<SearchRequestInternal> for CoreSearchRequest {
             with_payload,
             with_vector,
             score_threshold,
+            with_explanation: with_explanation.unwrap_or(false),
         }
     }
 }
@@ -144,6 +148,7 @@ impl TryFrom<api::grpc::qdrant::CoreSearchPoints> for CoreSearchRequest {
                     .unwrap_or_default(),
             ),
             score_threshold: value.score_threshold,
+            with_explanation: false, // no gTPC
         })
     }
 }
@@ -210,6 +215,7 @@ impl TryFrom<api::grpc::qdrant::SearchPoints> for CoreSearchRequest {
                 .transpose()?,
             with_vector: with_vectors.map(WithVector::from),
             score_threshold: score_threshold.map(|s| s as ScoreType),
+            with_explanation: false, // no gRPC
         })
     }
 }
