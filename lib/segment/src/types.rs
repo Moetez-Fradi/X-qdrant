@@ -11,7 +11,7 @@ use std::sync::Arc;
 
 use ahash::AHashSet;
 use common::stable_hash::StableHash;
-use common::types::ScoreType;
+use common::types::{ScoreExplanation, ScoreType};
 use ecow::EcoString;
 use fnv::FnvBuildHasher;
 use geo::{Contains, Coord, Distance as GeoDistance, Haversine, LineString, Point, Polygon};
@@ -371,6 +371,8 @@ pub struct ScoredPoint {
     pub shard_key: Option<ShardKey>,
     /// Order-by value
     pub order_value: Option<OrderValue>,
+    /// Explanation of which dimensions contributed most to the score
+    pub score_explanation: Option<ScoreExplanation>,
 }
 
 impl Eq for ScoredPoint {}

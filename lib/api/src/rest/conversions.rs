@@ -86,6 +86,7 @@ impl From<segment::types::ScoredPoint> for ScoredPoint {
             vector,
             shard_key,
             order_value,
+            score_explanation,
         } = value;
         ScoredPoint {
             id,
@@ -95,6 +96,7 @@ impl From<segment::types::ScoredPoint> for ScoredPoint {
             vector: vector.map(VectorStructOutput::from),
             shard_key,
             order_value,
+            score_explanation: score_explanation.map(|e| e.into()),
         }
     }
 }

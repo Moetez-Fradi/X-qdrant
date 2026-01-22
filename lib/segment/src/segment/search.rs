@@ -88,6 +88,7 @@ impl Segment {
                     vector,
                     shard_key: None,
                     order_value: None,
+                    score_explanation: None,
                 })
             })
             .collect()
