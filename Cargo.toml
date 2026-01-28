@@ -293,6 +293,10 @@ smallvec = { version = "1.15.1", features = ["write"] }
 dashmap = "6.1"
 walkdir = "2.5.0"
 
+[lib]
+name = "qdrant"
+path = "src/lib.rs"
+
 [[bin]]
 name = "schema_generator"
 path = "src/schema_generator.rs"
@@ -417,3 +421,12 @@ assets = [
         "644",
     ],
 ]
+
+
+[[bin]]
+name = "qdrant"
+path = "src/main.rs"
+
+[[bin]]
+name = "qdrant-server"
+path = "src/bin/qdrant-server.rs"
