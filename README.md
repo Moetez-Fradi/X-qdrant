@@ -19,6 +19,20 @@
     <a href="https://cloud.qdrant.io/"><img src="https://img.shields.io/badge/Qdrant-Cloud-24386C.svg?logo=cloud&style=flat-square" alt="Qdrant Cloud"></a>
 </p>
 
+# New Addition: Explainability Module (XQdrant)
+
+I have extended Qdrant with a powerful **Explainability Module** that enhances similarity searches by providing insights into the most influencing dimensions. This feature allows users to understand the factors contributing to vector similarities, fostering greater transparency and interpretability in AI-driven applications.
+
+### Key Features:
+- **Influencing Dimensions**: Retrieve the top dimensions that most impact the similarity score.
+- **Optional Retrieval Argument**: Seamlessly integrate explainability as an optional parameter in your search requests.
+
+This addition makes Qdrant not only a high-performance vector database but also a tool for explainable AI.
+
+For more details, see the [explainability module](lib/segment/src/spaces/explainability.rs).
+
+---
+
 **Qdrant** (read: _quadrant_) is a vector similarity search engine and vector database.
 It provides a production-ready service with a convenient API to store, search, and manage points—vectors with an additional payload
 Qdrant is tailored to extended filtering support. It makes it useful for all sorts of neural-network or semantic-based matching, faceted search, and other applications.
